@@ -1,0 +1,10 @@
+.sys-context {
+    position: absolute;
+    display: flex;
+    left: 82vw;
+    top: 5.5vh;
+    width: 15vw;
+    height: 30vh;
+    border-radius: var(--radi);
+    background-color: var(--primaryColor);
+}

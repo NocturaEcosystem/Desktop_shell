@@ -1,0 +1,13 @@
+:root {
+    --primaryColor: rgba(107, 104, 104, 0.45);
+    --secondaryColor: rgba(96, 94, 94, 0.45);
+    --primaryFocus: rgba(82, 80, 80, 0.35);
+    --primaryContrast: rgba(221, 221, 221, 0.45);
+    --radi: 12px;
+    --blur: 12px;
+    --reactTime: 0.5s;
+    --panelZoom: 1.4;
+    --fntsize: 18px;
+    --scaleAmnt: 1.05;
+    --glowAmnt: 10px;
+}

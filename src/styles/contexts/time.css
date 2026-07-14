@@ -1,0 +1,154 @@
+.time-context{
+    position: absolute;
+    display: flex;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5.5vh;
+    width: 35vw;
+    height: 35vh;
+    border-radius: var(--radi);
+    background-color: var(--primaryColor);
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-top: 30px;
+    height: 75%;
+    width: 50%;
+    border-radius: var(--radi);
+    padding: 2vh;
+    background-color: var(--primaryFocus);
+    overflow-y: auto;
+    gap: 15px;
+}
+
+.notification {
+    height: fit-content;
+    min-height: 12vh;
+    width: 90%;
+    margin-left: 10px;
+    padding: 1vh;
+    border-radius: var(--radi);
+    background-color: var(--secondaryColor);
+    transition: all var(--reactTime) ease;
+}
+
+.notification-title {
+    font-size: calc(var(--fntsize) + 5px);
+    font-weight: 500;
+}
+
+.notification > * {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.notification-main > *{
+    margin-top: 10px;
+    margin-left: 13px;
+    gap: 10px;
+}
+
+.notification-options {
+    margin: unset;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    overflow-x: auto;
+    height: fit-content;
+}
+
+.notification-button {
+    flex: 1;
+    cursor: pointer;
+    padding: 1vh;
+    background-color: var(--secondaryColor);
+    border-radius: var(--radi);
+    text-align: center;
+    transition: all var(--reactTime) ease;
+}
+
+.notification-button:hover {
+    backdrop-filter: blur(--blur);
+    background-color: var(--primaryColor);
+}
+
+.notification:hover {
+    background-color: var(--primaryColor);
+    scale: var(--scaleAmnt);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primaryColor);
+    border-radius: var(--radi);
+    padding: 2vh;
+    transition: all var(--reactTime) ease;
+}
+
+.card:hover {
+    scale: var(--scaleAmnt);
+}
+
+.deviceext {
+    margin-left: 30px;
+    margin-top: 30px;
+    height: 30%;
+    width: 60%;
+    transition: all var(--reactTime) ease;
+    overflow-y: auto;
+    gap: 12%;
+    justify-content: center;
+}
+
+.device-icon {
+    height: 32px;
+    width: 32px;
+    transition: all var(--reactTime) ease;
+}
+
+.device {
+    display: flex;
+    align-items: center;
+    gap: 25%;
+    cursor: default;
+    scale: 0.9;
+}
+
+.device[data-on="true"] .device-icon {
+    filter: drop-shadow(0 0 var(--glowAmnt) var(--primaryContrast));
+    scale: 1.2;
+}
+
+.device[data-on="false"] .device-icon {
+    filter: none;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    height: 100%;
+    gap: 5%;
+    overflow-y: auto;
+}
+
+.device-card:hover {
+    scale: var(--scaleAmnt);
+}
+
+
+.apps {
+    height: 28%;
+    width: 60%;
+    margin-left: 30px;
+}
+
+.apps img{
+    position: absolute;
+    height: 64px;
+    width: 64px;
+}

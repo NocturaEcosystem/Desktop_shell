@@ -1,0 +1,9 @@
+* {
+    font-family: "Manrope", sans-serif;
+}
+
+html, body {
+    overflow: hidden;
+    height: 100%;
+    background: transparent;
+}
