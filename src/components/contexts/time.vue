@@ -4,7 +4,7 @@
 <template>
     <div class="time-context">
         <div class="notifications">
-            <div class="notification">
+            <div class="notification notifyext">
                 <div class="notification-title">From Nocutra Space</div>
                 <div class="notification-main">
                     <div class="notification-subject">Hi!</div>
@@ -30,3 +30,4 @@
 </template>
 
 <style src="../../styles/contexts/time.css"></style>
+

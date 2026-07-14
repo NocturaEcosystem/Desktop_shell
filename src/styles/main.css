@@ -7,3 +7,16 @@ html, body {
     height: 100%;
     background: transparent;
 }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primaryColor);
+    border-radius: var(--radi);
+    padding: 2vh;
+    transition: all var(--reactTime) ease;
+}
+
+.card:hover {
+    scale: var(--scaleAmnt);
+}

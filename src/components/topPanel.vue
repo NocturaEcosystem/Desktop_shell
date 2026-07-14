@@ -1,18 +1,37 @@
 <script setup lang="ts">
 import timeContext from "../components/contexts/time.vue"
 import sysContext from "../components/contexts/sys.vue"
-import { onMounted, onUnmounted, ref } from 'vue'
-
-
+import { ref, onMounted, onActivated } from 'vue'
 
 let showTime = ref(false)
 let showSys = ref(false)
+let currentWorkspace = 0
+let workspace = ref<HTMLElement | null>(null)
+let changeWorkspace = (num: number) => {}
+
+onMounted(() => {
+    changeWorkspace = (num: number) => {
+        const work_el = workspace.value?.children[num] as HTMLDivElement | undefined
+        const prev_el = workspace.value?.children[currentWorkspace] as HTMLDivElement | undefined
+        if (work_el && prev_el) {
+            work_el.classList.add('active')
+            prev_el.classList.remove('active')
+            currentWorkspace = num
+        }
+    }
+    changeWorkspace(currentWorkspace)
+})
+
+function handleWorkspceSrcoll() {
+    currentWorkspace += 1
+    changeWorkspace(currentWorkspace)
+}
 </script>
 
 <template>
     <div class="topPanel">
         <div class="topPanel-left">
-            <div class="panelWorkspace">
+            <div class="panelWorkspace" ref="workspace" @scroll="handleWorkspceSrcoll();">
                 <div>1</div>
                 <div>2</div>
                 <div>3</div>
