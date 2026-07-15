@@ -20,18 +20,6 @@
     transform: translateY(89vh);
 }
 
-.app-wrap {
-    width: 64px;
-    height: 64px;
-}
-
-.app-ico {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.5s ease;
-}
-
 
 .app-wrap {
     position: relative;
@@ -58,8 +46,4 @@
 
 .app-wrap:hover::after {
     opacity: 1;
-}
-
-.app-wrap:hover .app-ico{
-    transform: scale(var(--panelZoom));
 }

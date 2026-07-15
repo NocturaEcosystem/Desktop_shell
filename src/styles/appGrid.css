@@ -1,0 +1,28 @@
+.appPad {
+    position: absolute;
+    display: flex;
+    width: 15vw;
+    height: 10vh;
+    border-radius: var(--radi);
+    background-color: var(--primaryColor);
+    left: 30px;
+    top: 200px;
+    overflow: hidden;
+    transition: all calc(var(--reactTime) - 0.2s) ease;
+    align-items: center;
+}
+
+.appPadIco {
+    width: 60px;
+    height: 60px;
+    transition: transform calc(var(--reactTime) + 0.3) ease;
+}
+
+.appPad:hover {
+    display: grid;
+    width:  30vw;
+    height: 30vh;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    place-items: center;
+    overflow-y: auto;
+}

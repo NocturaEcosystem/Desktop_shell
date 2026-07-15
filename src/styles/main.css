@@ -20,3 +20,26 @@ html, body {
 .card:hover {
     scale: var(--scaleAmnt);
 }
+
+.app-wrap {
+    width: 64px;
+    height: 64px;
+    background-color: var(--primaryColor);
+    border-radius: var(--radi);
+}
+
+.app-ico {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+    scale: 0.8;
+}
+
+.app-wrap:hover .app-ico{
+    transform: translateY(-3px) scale(var(--panelZoom));
+}
+
+.app-wrap:active .app-ico{
+    transform: scale(0.9);
+}
