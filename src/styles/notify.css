@@ -35,19 +35,20 @@
     flex: 1;
     cursor: pointer;
     padding: 1vh;
-    background-color: var(--secondaryColor);
+    background-color: var(--primaryColor);
     border-radius: var(--radi);
     text-align: center;
     transition: all var(--reactTime) ease;
+    color: var(--superPrimaryContrast)
 }
 
 .notification-button:hover {
     backdrop-filter: blur(--blur);
-    background-color: var(--primaryColor);
+    background-color: var(--primaryContrast);
+    color: var(--strongPrimaryColor)
 }
 
 .notification:hover {
-    background-color: var(--primaryColor);
     scale: var(--scaleAmnt);
 }
 

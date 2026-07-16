@@ -1,8 +1,11 @@
 :root {
+    --strongPrimaryColor: rgba(131, 127, 127, 0.8);
     --primaryColor: rgba(107, 104, 104, 0.45);
+    --lightPrimaryColor: rgba(107, 104, 104, 0.1);
     --secondaryColor: rgba(96, 94, 94, 0.45);
     --primaryFocus: rgba(82, 80, 80, 0.35);
     --primaryContrast: rgba(221, 221, 221, 0.45);
+    --superPrimaryContrast: rgba(221, 221, 221);
     --radi: 12px;
     --blur: 12px;
     --reactTime: 0.5s;

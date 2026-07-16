@@ -5,7 +5,7 @@
 html, body {
     overflow: hidden;
     height: 100%;
-    background: transparent;
+    background: white;
 }
 
 .card {
@@ -42,4 +42,11 @@ html, body {
 
 .app-wrap:active .app-ico{
     transform: scale(0.9);
+}
+
+.line {
+    width: 90%;
+    height: 3px;
+    border-radius: var(--radi);
+    background-color: var(--primaryColor);
 }

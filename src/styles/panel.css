@@ -46,4 +46,5 @@
 
 .app-wrap:hover::after {
     opacity: 1;
+    align-self: center;
 }
