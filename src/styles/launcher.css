@@ -12,6 +12,14 @@
     padding: 1vh;
     outline: 3px solid black;
     overflow: auto;
+    scale: 0.8;
+    opacity: 0;
+    transition: all calc(var(--reactTime) + 1.0s) ease;
+}
+
+.launcher.show {
+    opacity: 1;
+    scale: 1;
 }
 
 .search-bar {

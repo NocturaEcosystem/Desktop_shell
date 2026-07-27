@@ -5,6 +5,7 @@ import shellContext from "./components/contexts/shell.vue"
 import notification from "./components/notify..vue"
 import appPad from "./components/appPad.vue";
 import launcher from "./components/launcher.vue";
+
 </script>
 
 <style src="./styles/vars.css"></style>
@@ -16,7 +17,7 @@ import launcher from "./components/launcher.vue";
   <panel />
   <notification />
   <appPad />
-  <launcher />
+  <launcher/>
 
   <shellContext />
 </template>
