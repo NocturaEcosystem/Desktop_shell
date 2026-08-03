@@ -1,7 +1,29 @@
-# Tauri + Vue + TypeScript
+# Desktop_shell
+This is the official repository for the Noctura Laptop/Desktop devices
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Important Notes
+For any contributors, I would like to mention some things about this project, and some problems i faces
+and the things i did to solve them. Here are a list of them in order
 
-## Recommended IDE Setup
+Issues fixed
+- How to make icons work
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## How to make icons work
+
+The issue is, you are not allowed to directly load "/var/lib/flatpak...." in the front end. But, you are allowed to load an immage,
+This means,
+
+
+
+
+Backend {                                           Frontend {
+    "/var/lib/flatpak"            ===X==>                   <img src="/var/lib/flatpak" />
+}                                                   }
+
+Will NOT work
+
+So the process looks a bit more like:-
+
+Backend {                                                                                             Frontend  {
+    "/var/lib/flatpak"   =>  Turn into a URL  => "app-icons://localhost.."        ======>                 <img src="URL" />
+}                                                                                                     }

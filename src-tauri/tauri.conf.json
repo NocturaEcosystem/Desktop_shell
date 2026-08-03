@@ -21,7 +21,17 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self' ipc: http://ipc.localhost; img-src 'self' asset: app-icon: http://asset.localhost data:",
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "**/*",
+          "/var/**",
+          "**/.*/**",
+          "/var/lib/flatpak/exports/share/icons/**",
+          "/home/*/.local/share/icons/**"
+        ]
+      }
     }
   },
   "bundle": {
