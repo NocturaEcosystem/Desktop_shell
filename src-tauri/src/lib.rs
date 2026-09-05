@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::fs;
 use tauri::utils::config::WebviewUrl;
 #[tauri::command]
-fn get_apps() -> HashMap<String, Vec<AppInfo>>   {
+fn get_apps() -> HashMap<String, Vec<AppInfo>> {
     utils::get_apps()
 }
 

@@ -45,6 +45,11 @@ pub fn get_apps() -> HashMap<String, Vec<AppInfo>> {
         let categories = entry.categories().unwrap_or_default();
 
         let icon_name = entry.icon().unwrap_or("default");
+        let dont_show = entry.no_display();
+
+        if dont_show {
+            continue;
+        }
         
         if let Some(path) = lookup(icon_name).find() {
             println!("{:?}", categories);
@@ -100,5 +105,9 @@ pub fn get_apps() -> HashMap<String, Vec<AppInfo>> {
     apps_organized.into_iter().map(|(k, v)| (k.to_string(), v)).collect()
 }
 
-
-
+#[derive(serde::Serialize)]
+pub struct NocturaShell {
+    workplaces: u16,
+    current_workplace: u8,
+    theme: String,
+}

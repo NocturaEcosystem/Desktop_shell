@@ -9,6 +9,8 @@
     opacity: 0;
     scale: 0.8;
     transition: all calc(var(--reactTime) - 0.3) ease;
+    backdrop-filter: blur(var(--blur));
+
 }
 
 .shell-context.show {

@@ -7,4 +7,5 @@
     height: 30vh;
     border-radius: var(--radi);
     background-color: var(--primaryColor);
+    backdrop-filter: blur(var(--blur));
 }

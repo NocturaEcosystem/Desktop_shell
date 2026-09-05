@@ -8,6 +8,7 @@
     height: 35vh;
     border-radius: var(--radi);
     background-color: var(--primaryColor);
+    backdrop-filter: blur(var(--blur));
 }
 
 .notifications {

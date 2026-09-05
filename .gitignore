@@ -46,3 +46,7 @@ Thumbs.db
 
 # Testing/coverage
 coverage/
+
+.nyx/
+logs/*
+!logs/logs.md
