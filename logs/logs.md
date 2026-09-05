@@ -12,10 +12,10 @@ This is the official repository and update logs for pus, Nocturas desktop sheThi
 Because currently this shell is underdeveloped, expect a lot of architectural changes
 
 ## Things that were added/changed
-
+```
 src/  -  🟢 Added
 src-tauri/  -  🟢 Added
 logs/  -  🟢 Added
 .gitignore  -  🟡 Changed
-
+```
 
