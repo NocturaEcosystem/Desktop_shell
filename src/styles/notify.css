@@ -23,9 +23,9 @@
 }
 
 .notification-options {
+    display: flex;
     margin: unset;
     margin-top: 10px;
-    display: flex;
     justify-content: space-evenly;
     overflow-x: auto;
     height: fit-content;
