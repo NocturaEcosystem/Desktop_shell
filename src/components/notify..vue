@@ -19,6 +19,7 @@ let show = ref<boolean>(false)
 
 let notifyBox = ref<HTMLElement | null>()
 function hideNotification() {
+    options.value = []
     if (notifyBox.value instanceof HTMLElement) {
         notifyBox.value.remove()
     }

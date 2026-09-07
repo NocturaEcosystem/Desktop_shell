@@ -7,39 +7,38 @@ let showTime = ref(false)
 let showSys = ref(false)
 let currentWorkspace = 0
 let workspace = ref<HTMLElement | null>(null)
-let changeWorkspace = (num: number) => {}
+let date = ref<HTMLElement | null>(null);
 
 onMounted(() => {
-    changeWorkspace = (num: number) => {
-        const work_el = workspace.value?.children[num] as HTMLDivElement | undefined
-        const prev_el = workspace.value?.children[currentWorkspace] as HTMLDivElement | undefined
-        if (work_el && prev_el) {
-            work_el.classList.add('active')
-            prev_el.classList.remove('active')
-            currentWorkspace = num
+    setInterval(() => {
+        if (date.value) {
+            let time = new Date();
+            date.value.innerText = `${time.toLocaleTimeString("en-US", { month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: true}).replace(",", "")} `
         }
-    }
-    changeWorkspace(currentWorkspace)
+    }, 1000)
 })
 
-function handleWorkspceSrcoll() {
-    currentWorkspace += 1
-    changeWorkspace(currentWorkspace)
+function activate(event: Event, space: number) {
+  if (event.currentTarget) {
+    currentWorkspace = space;
+    (event.currentTarget as HTMLElement).classList.add("active");
+  }
 }
+
 </script>
 
 <template>
     <div class="topPanel">
         <div class="topPanel-left">
-            <div class="panelWorkspace" ref="workspace" @scroll="handleWorkspceSrcoll();">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>+</div>
+            <div class="panelWorkspace" ref="workspace">
+                <div class="workspace" @click="activate($event, 1)">1</div>
+                <div class="workspace">2</div>
+                <div class="workspace">3</div>
+                <div class="workspace">+</div>
             </div>
         </div>
         <div class="topPanel-center">
-            <div class="panelTime" @click="showTime = !showTime">Jul 12 2:09PM</div>
+            <div class="panelTime" @click="showTime = !showTime" ref="date"></div>
         </div>
         <div class="topPanel-right">
             <div class="sys-icons" @click="showSys = !showSys">Icons will be placed here</div>

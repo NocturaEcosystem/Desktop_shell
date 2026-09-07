@@ -1,35 +1,47 @@
 <script setup lang="ts">
+
 import { ref, onMounted, onUnmounted } from 'vue'
-let ShellContext = ref<HTMLElement | null>(null)
+
+const ShellContext = ref<HTMLElement | null>(null)
 
 function contextShow(e: MouseEvent) {
-	e.preventDefault()
-	if (ShellContext.value instanceof HTMLElement) {
+	console.log("many, ShellContext", ShellContext.value)
+	if (ShellContext.value) {
 		ShellContext.value.style.left = `${e.clientX}px`
 		ShellContext.value.style.top = `${e.clientY}px`
 		ShellContext.value.classList.add("show")
 	}
 }
 
-function contextHide(e: MouseEvent) {
+function contextHide(e: Event) {
 	e.preventDefault()
-	if (ShellContext.value instanceof HTMLElement) {
-			if ( ShellContext.value.classList.contains("show") ) {
-				ShellContext.value.classList.remove("show")
-			}
+	if (ShellContext.value) {
+		if ( ShellContext.value.classList.contains("show") ) {
+			ShellContext.value.classList.remove("show")
+		}
 	}
 }
 
+
+let showContext = (e: MouseEvent) => {
+  e.preventDefault()
+  if (e.target === document.body) {
+    contextShow(e)
+  }
+}
+
+let hideContext = (e: MouseEvent) => {
+    contextHide(e)
+  }
+
 onMounted(() => {
-	window.addEventListener("contextmenu", contextShow)
-	window.addEventListener("click", contextHide)
+  window.addEventListener("contextmenu", showContext)
+  window.addEventListener("click", hideContext)
 })
-
 onUnmounted(() => {
-	window.addEventListener("contextmenu", contextShow)
-	window.removeEventListener("click", contextHide)
+  window.removeEventListener("contextmenu", showContext)
+  window.removeEventListener("click", hideContext)
 })
-
 </script>
 
 <template>

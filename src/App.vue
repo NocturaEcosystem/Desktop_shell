@@ -7,14 +7,13 @@ import launcher from "./components/launcher.vue";
 import { nyx_client } from "./webClient.ts";
 import { showNotification } from "./components/notify..vue";
 
-
 let client = new nyx_client("Lepus")
 client.connect()
 client.OnReceive = (rawData) => {
   if (typeof rawData == "string") {
     let data = JSON.parse(rawData)
-    if (data.payload) {
-      if (data.payload.request) {
+    if (Object.prototype.hasOwnProperty.call(data, "payload")) {
+      if (Object.prototype.hasOwnProperty.call(data.payload, "request")) {
         switch (data.payload.request) {
           case "notify": {
             let request = data.payload
@@ -34,6 +33,7 @@ client.OnReceive = (rawData) => {
     }
   }
 }
+
 </script>
 
 <style src="./styles/vars.css"></style>

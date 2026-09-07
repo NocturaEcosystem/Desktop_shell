@@ -22,8 +22,18 @@ function shortcuts(e: KeyboardEvent) {
     if (Launcher?.value instanceof HTMLElement) {
       if (Launcher.value.classList.contains("show")) {
 				Launcher.value.classList.remove("show")
+        setTimeout(() => {
+          if (Launcher.value) {
+            Launcher.value.style.display = "none"
+          }
+        }, 500)
 			} else {
-				Launcher.value.classList.add("show")
+        Launcher.value.style.display = "flex"
+        setTimeout(() => {
+          if (Launcher.value) {
+				  Launcher.value.classList.add("show")
+          }
+        }, 5)  // for smotheness, a little delay so the launcher dosent flicker
 			}
     }
   }

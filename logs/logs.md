@@ -48,3 +48,25 @@ notify.vue  -  🟡 Changed
 notify.css  -  🟡 Changed
 
 ```
+---
+# ⭐ New Feature - V-1-0-2
+
+**Time**: 08/09/2026 - 12:44 AM
+**Status**: 🌗 Partially Complete
+
+## Summary
+Added better launcher animation. 
+The context menu can now work properly.
+The time on the panel updates
+
+## Notice
+Launcher now has "display" set to none when not visible, and set to "flex" when visible.
+There is a minor delay when setting launcher to visible
+
+## Things that were added/changed
+```
+topPanel.vue  -  🟡 Changed
+shell.vue  -  🟡 Changed
+launcher.vue  -  🟡 Changed
+
+```

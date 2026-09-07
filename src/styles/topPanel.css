@@ -40,18 +40,18 @@
     gap: 5px;
 }
 
-.panelWorkspace > * {
+.workspace {
     padding: 0.5vh;
     border-radius: var(--radi);
     transition: background-color var(--reactTime) ease;
 }
 
-.panelWorkspace > *:hover {
+.workspace:hover {
     background-color: var(--primaryFocus);
 }
 
 
-.panelWorkspace > *.active {
+.workspace.active {
     background-color: var(--primaryFocus);
 }
 
