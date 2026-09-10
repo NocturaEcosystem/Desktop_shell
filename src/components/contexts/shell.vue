@@ -50,6 +50,18 @@ onUnmounted(() => {
             <img src="/tauri.svg" class="shell-button-ico">
             <div class="shell-button-desc">Open Logs</div>
         </div>
+        <div class="shell-button">
+            <img src="/tauri.svg" class="shell-button-ico">
+            <div class="shell-button-desc">Change Wallpaper</div>
+        </div>
+        <div class="shell-button">
+            <img src="/tauri.svg" class="shell-button-ico">
+            <div class="shell-button-desc">Open Terminal</div>
+        </div>
+        <div class="shell-button">
+            <img src="/tauri.svg" class="shell-button-ico">
+            <div class="shell-button-desc">Display Settings</div>
+        </div>
     </div>
 </template>
 

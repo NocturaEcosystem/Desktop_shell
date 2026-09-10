@@ -1,8 +1,10 @@
 .shell-context {
     position: absolute;
     display: flex;
+    flex-direction: column;
     width: 10vw;
-    height: 22vh;
+    max-height: fit-content;
+    height: 20vh;
     border-radius: var(--radi);
     background-color: var(--primaryColor);
     padding: 3vh;
@@ -10,6 +12,7 @@
     scale: 0.8;
     transition: all calc(var(--reactTime) - 0.3) ease;
     backdrop-filter: blur(var(--blur));
+    align-items: center;
 
 }
 
@@ -34,8 +37,8 @@
 }
 
 .shell-button-desc {
-    margin-top: 0.5vh;
-    margin-left: 2vw;
+    margin-left: 1vw;
+    align-self: center;
 }
 
 .shell-button:hover {

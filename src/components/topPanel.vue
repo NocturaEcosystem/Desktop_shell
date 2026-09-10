@@ -7,6 +7,18 @@ let showTime = ref(false)
 let showSys = ref(false)
 let currentWorkspace = 0
 let workspace = ref<HTMLElement | null>(null)
+let workspaces = ref([
+    {
+        "num": 1,
+        "active": true,
+        "id": 1021
+    },
+    {
+        "num": 2,
+        "active": false,
+        "id": 1021
+    }
+])
 let date = ref<HTMLElement | null>(null);
 
 onMounted(() => {
@@ -18,11 +30,31 @@ onMounted(() => {
     }, 1000)
 })
 
-function activate(event: Event, space: number) {
-  if (event.currentTarget) {
-    currentWorkspace = space;
-    (event.currentTarget as HTMLElement).classList.add("active");
-  }
+function activate(space: number) {
+    if (workspaces.value) {
+        workspaces.value.forEach((val) => {
+            val.active = false
+        })
+        if (workspaces.value[space-1]) {
+            workspaces.value[space-1].active = true
+        }
+        console.log("WORKSPACES", workspaces)
+    }
+
+}
+
+function makeNewSpace() {
+    if (workspaces.value) {
+        if (workspaces.value.length >= 9){
+            return
+        }
+        let newNum = (workspaces.value.length + 1) // length result is 1 indexed so no need for another +1
+        workspaces.value.push({
+            num: newNum,
+            active: false,
+            id: 1011,
+        })
+    }
 }
 
 </script>
@@ -31,10 +63,16 @@ function activate(event: Event, space: number) {
     <div class="topPanel">
         <div class="topPanel-left">
             <div class="panelWorkspace" ref="workspace">
-                <div class="workspace" @click="activate($event, 1)">1</div>
-                <div class="workspace">2</div>
-                <div class="workspace">3</div>
-                <div class="workspace">+</div>
+                <div
+                    v-for="(num, index) in workspaces"
+                    :key="index"
+                    :class="num.active == true ? 'workspace active' : 'workspace' "
+                    @click="activate(num.num)"
+                >
+                    {{ num.num }}
+                </div>
+
+                <div class="workspace" @click="makeNewSpace()">+</div>
             </div>
         </div>
         <div class="topPanel-center">

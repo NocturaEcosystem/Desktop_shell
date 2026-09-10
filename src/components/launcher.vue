@@ -12,6 +12,8 @@ interface appsStructure {
 }
 
 let apps = ref<Record<string, appsStructure[]>>({});
+let showContext = ref<Boolean>(true)
+let context = ref<HTMLElement | null>(null);
 
 function shortcuts(e: KeyboardEvent) {
 	console.log([...keys])
@@ -22,6 +24,7 @@ function shortcuts(e: KeyboardEvent) {
     if (Launcher?.value instanceof HTMLElement) {
       if (Launcher.value.classList.contains("show")) {
 				Launcher.value.classList.remove("show")
+        hideContext()
         setTimeout(() => {
           if (Launcher.value) {
             Launcher.value.style.display = "none"
@@ -66,10 +69,27 @@ onUnmounted(() =>{
   window.addEventListener("keydown", shortcuts)
   window.removeEventListener("keyup", keyUp)
 })
+
+function showContextForApp(event: MouseEvent) {
+
+  if (context.value) {
+    console.log("HERE");
+    showContext.value = true
+    context.value.style.left = `${event.clientX}px`
+    context.value.style.top = `${event.clientY}px`
+    context.value.classList.add("show")
+  }
+}
+
+function hideContext() {
+  if (context.value) {
+    context.value.classList.remove("show")
+  }
+}
 </script>
 
 <template>
-    <div class="launcher" ref="Launcher">
+    <div class="launcher" ref="Launcher" style="display: none;" @click="hideContext">
         <div class="search-bar">
             <div>Search...</div>
         </div>
@@ -84,16 +104,29 @@ onUnmounted(() =>{
                 class="app-wrap"
                 :data-name="app_child.name"
                 :data-exec="app_child.exec"
+                
             >
-              <img :src="app_child.icon" class="appPadIco app-ico"/>
+              <img :src="app_child.icon" class="appPadIco app-ico" @contextmenu="showContextForApp($event)"/>
             </div>
           </div>
         </template>
       </div>
+    </div>
 
-        
+    <div class="shell-context" ref="context">
+
+      <div class="shell-button">
+        <img src="/tauri.svg" class="shell-button-ico">
+        <div class="shell-button-desc">Pin app</div>
+      </div>
+
+      <div class="shell-button">
+        <img src="/tauri.svg" class="shell-button-ico">
+        <div class="shell-button-desc">View Information</div>
+      </div>
+
     </div>
 </template>
 
 <style src="../styles/launcher.css"></style>
-
+<style src="../styles/contexts/shell.css"></style>

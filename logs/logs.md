@@ -31,14 +31,14 @@ activatable through nyx-server
 
 ## Notice
 As of now, to send a notifcation you have to send the message:
-{
+```{
     "payload": {
         "request": "notify",
         "title": "Enter name of your app",
         "summary": "Summary of msg",
         "Options": [// empty or options]   NOTE: options not supported yet
     }
-}
+}```
 NOTE: you can also just use the classic linux D-bus **later** when noctura will support it
 
 
@@ -60,7 +60,7 @@ The context menu can now work properly.
 The time on the panel updates
 
 ## Notice
-Launcher now has "display" set to none when not visible, and set to "flex" when visible.
+Launcher now has `display` set to none when not visible, and set to "flex" when visible.
 There is a minor delay when setting launcher to visible
 
 ## Things that were added/changed
@@ -68,5 +68,26 @@ There is a minor delay when setting launcher to visible
 topPanel.vue  -  🟡 Changed
 shell.vue  -  🟡 Changed
 launcher.vue  -  🟡 Changed
+
+```
+---
+# ⭐ New Feature - V-1-0-3
+
+**Time**: 10/09/2026 - 09:57 AM
+**Status**: 🌕 Complete
+
+## Summary
+Added workspace indication
+Fixed context menu and added more features
+Added conext menu to launcher
+## Notice
+There is now a new context block at launcher.vue. That context is for the launcher
+The variable `workspaces` Now stores the workspacees available
+
+## Things that were added/changed
+```
+launcher.vue  -  🟡 Changed
+topPanel.vue  -  🟡 Changed
+shell.vue  -  🟡 Changed
 
 ```
