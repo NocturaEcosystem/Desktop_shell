@@ -5,8 +5,19 @@ import { ref, onMounted, onActivated } from 'vue'
 
 let showTime = ref(false)
 let showSys = ref(false)
-let currentWorkspace = 0
-let workspace = ref<HTMLElement | null>(null)
+
+let date = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+    setInterval(() => {
+        if (date.value) {
+            let time = new Date();
+            date.value.innerText = `${time.toLocaleTimeString("en-US", { month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: true}).replace(",", "")} `
+        }
+    }, 1000)
+})
+
+let currentWorkspace = 1
 let workspaces = ref([
     {
         "num": 1,
@@ -19,24 +30,14 @@ let workspaces = ref([
         "id": 1021
     }
 ])
-let date = ref<HTMLElement | null>(null);
-
-onMounted(() => {
-    setInterval(() => {
-        if (date.value) {
-            let time = new Date();
-            date.value.innerText = `${time.toLocaleTimeString("en-US", { month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: true}).replace(",", "")} `
-        }
-    }, 1000)
-})
-
 function activate(space: number) {
     if (workspaces.value) {
-        workspaces.value.forEach((val) => {
-            val.active = false
-        })
         if (workspaces.value[space-1]) {
+            workspaces.value.forEach((val) => {
+                val.active = false
+            })
             workspaces.value[space-1].active = true
+            currentWorkspace = space
         }
         console.log("WORKSPACES", workspaces)
     }
@@ -57,6 +58,10 @@ function makeNewSpace() {
     }
 }
 
+defineExpose({
+    activate,
+    makeNewSpace
+})
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
-import { invoke, convertFileSrc } from '@tauri-apps/api/core'
+import { onMounted, ref } from "vue";
+import { invoke } from '@tauri-apps/api/core'
 let Launcher = ref<HTMLElement | null>(null)
 const keys = new Set<string>()
 
@@ -15,38 +15,27 @@ let apps = ref<Record<string, appsStructure[]>>({});
 let showContext = ref<Boolean>(true)
 let context = ref<HTMLElement | null>(null);
 
-function shortcuts(e: KeyboardEvent) {
-	console.log([...keys])
-  keys.add(e.key)
-  console.log(Launcher.value)
-  e.preventDefault()
-  if (keys.has("Super") && keys.has("a")) {
-    if (Launcher?.value instanceof HTMLElement) {
-      if (Launcher.value.classList.contains("show")) {
-				Launcher.value.classList.remove("show")
-        hideContext()
-        setTimeout(() => {
-          if (Launcher.value) {
-            Launcher.value.style.display = "none"
-          }
-        }, 500)
-			} else {
-        Launcher.value.style.display = "flex"
-        setTimeout(() => {
-          if (Launcher.value) {
-				  Launcher.value.classList.add("show")
-          }
-        }, 5)  // for smotheness, a little delay so the launcher dosent flicker
-			}
+function showLauncher() {
+  if (Launcher?.value instanceof HTMLElement) {
+    if (Launcher.value.classList.contains("show")) {
+      Launcher.value.classList.remove("show")
+      hideContext()
+      setTimeout(() => {
+        if (Launcher.value) {
+          Launcher.value.style.display = "none"
+        }
+      }, 500)
+    } else {
+      Launcher.value.style.display = "flex"
+      setTimeout(() => {
+        if (Launcher.value) {
+        Launcher.value.classList.add("show")
+        }
+      }, 5)  // for smotheness, a little delay so the launcher dosent flicker
     }
   }
 }
 
-function keyUp(e: KeyboardEvent) {
-	console.log([...keys])
-	e.preventDefault()
-	keys.delete(e.key)
-}
 
 onMounted(async() => {
   const rawData: Record<string, appsStructure[]> = await invoke('get_apps');
@@ -61,13 +50,11 @@ onMounted(async() => {
   apps.value = rawData
   console.log("APPS", apps.value);
   console.log("UNAPPS", rawData);
-  window.addEventListener("keydown", shortcuts)
-  window.addEventListener("keyup", keyUp)
 })
 
-onUnmounted(() =>{
-  window.addEventListener("keydown", shortcuts)
-  window.removeEventListener("keyup", keyUp)
+
+defineExpose({
+  showLauncher
 })
 
 function showContextForApp(event: MouseEvent) {

@@ -91,3 +91,24 @@ topPanel.vue  -  🟡 Changed
 shell.vue  -  🟡 Changed
 
 ```
+---
+# 📁 Architecture change / ⭐ New Feature - V-1-0-4
+
+**Time**: 12/09/2026 - 03:38 PM
+**Status**: 🌕 Complete
+
+## Summary
+The background is now transparent and fullscreen
+There is also a new OSD system (OSD: The popup that popups up when brightness/volume is changed)
+
+## Notice
+The key press system was moved from launcher.vue to App.vue
+
+
+## Things that were added/changed
+```
+osd.vue  -  🟢 Added
+launcher.vue  -  🟡 Changed
+App.vue  -  🟡 Changed
+
+```

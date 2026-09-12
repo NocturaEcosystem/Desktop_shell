@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "desktop_shell",
+  "productName": "Lepus",
   "version": "0.1.0",
-  "identifier": "com.nonedude.desktop_shell",
+  "identifier": "com.nonedude.Lepus",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1421",
@@ -13,9 +13,10 @@
     "windows": [
       {
         "transparent": true,
-        "decorations": true,
-        "title": "desktop_shell",
-        "resizable": true,
+        "decorations": false,
+        "title": "Lepus",
+        "resizable": false,
+        "maximized": true,
         "width": 800,
         "height": 600
       }

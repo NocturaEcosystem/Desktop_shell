@@ -45,7 +45,7 @@
 .notification-button:hover {
     backdrop-filter: blur(--blur);
     background-color: var(--primaryContrast);
-    color: var(--strongPrimaryColor)
+    color: var(--contrast)
 }
 
 .notification:hover {
@@ -57,5 +57,5 @@
     width: 22vw;
     left: 50%;
     transform: translateX(-50%);
-    top: 6vh
+    top: 7vh
 }

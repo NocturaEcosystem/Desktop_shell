@@ -10,6 +10,7 @@
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     cursor: default;
+    top: 2.3vh;
 }
 
 .topPanel-left {

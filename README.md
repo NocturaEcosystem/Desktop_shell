@@ -15,15 +15,16 @@ This means,
 
 
 
-
+```
 Backend {                                           Frontend {
     "/var/lib/flatpak"            ===X==>                   <img src="/var/lib/flatpak" />
 }                                                   }
-
+```
 Will NOT work
 
 So the process looks a bit more like:-
-
+```
 Backend {                                                                                             Frontend  {
     "/var/lib/flatpak"   =>  Turn into a URL  => "app-icons://localhost.."        ======>                 <img src="URL" />
-}                                                                                                     }
+}  
+```                                                                                                   }

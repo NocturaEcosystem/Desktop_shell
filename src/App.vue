@@ -6,6 +6,14 @@ import notification from "./components/notify..vue"
 import launcher from "./components/launcher.vue";
 import { nyx_client } from "./webClient.ts";
 import { showNotification } from "./components/notify..vue";
+import osd from "./components/osd.vue";
+import { onMounted, onUnmounted, ref } from "vue";
+
+let keys = new Set<string>()
+
+let launcher_ref = ref<InstanceType<typeof launcher> | null>(null)
+let top_ref = ref<InstanceType<typeof topPanel> | null>(null)
+let osd_ref = ref<InstanceType<typeof osd> | null>(null)
 
 let client = new nyx_client("Lepus")
 client.connect()
@@ -34,6 +42,51 @@ client.OnReceive = (rawData) => {
   }
 }
 
+function keyUp(e: KeyboardEvent) {
+  e.preventDefault()
+  keys.delete(e.key)
+  console.log([...keys])
+}
+
+function keydown(e: KeyboardEvent) {
+  e.preventDefault()
+  keys.add(e.key)
+  console.log([...keys])
+  shortcuts(keys)
+}
+
+
+function shortcuts(keys: Set<string>) {
+  function has(key: string) {
+    return [...keys].some(ckey => ckey === key)
+  }
+  let nKey = Number([...keys].find(ckey => /^[0-9]$/.test(ckey)));
+  if (has("Super") && has("a")) {
+    if (launcher_ref.value) {
+      launcher_ref.value.showLauncher()
+    }
+  } else if (has("Super") && nKey && top_ref.value) {
+    top_ref.value.activate(nKey)
+  } else if (has("Super") && has("=") && top_ref.value) {
+    top_ref.value.makeNewSpace()
+  }
+  if (osd_ref.value) {
+    osd_ref.value.keyed(keys)
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", keydown)
+  window.addEventListener("keyup", keyUp)
+})
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", keydown)
+  window.removeEventListener("keyup", keyUp)
+})
+
+
+
 </script>
 
 <style src="./styles/vars.css"></style>
@@ -41,10 +94,11 @@ client.OnReceive = (rawData) => {
 <style src="./styles/notify.css"></style>
 
 <template>
-  <topPanel />
+  <topPanel ref="top_ref"/>
   <panel />
   <notification/>
-  <launcher/>
+  <launcher ref="launcher_ref"/>
 
   <shellContext />
+  <osd ref="osd_ref"/>
 </template>

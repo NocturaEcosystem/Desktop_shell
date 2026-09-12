@@ -3,12 +3,13 @@
     display: flex;
     left: 50%;
     transform: translateX(-50%);
-    top: 5.5vh;
+    top: 7vh;
     width: 35vw;
     height: 35vh;
     border-radius: var(--radi);
-    background-color: var(--primaryColor);
+    background-color: var(--strongPrimaryColor);
     backdrop-filter: blur(var(--blur));
+    z-index: 999;
 }
 
 .notifications {
