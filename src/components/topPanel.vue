@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import timeContext from "../components/contexts/time.vue"
 import sysContext from "../components/contexts/sys.vue"
-import { ref, onMounted, onActivated } from 'vue'
+import { ref, onMounted } from 'vue'
+import "../styles/topPanel.css"
 
 let showTime = ref(false)
 let showSys = ref(false)
@@ -17,7 +18,7 @@ onMounted(() => {
     }, 1000)
 })
 
-let currentWorkspace = 1
+//let currentWorkspace = 1
 let workspaces = ref([
     {
         "num": 1,
@@ -37,7 +38,7 @@ function activate(space: number) {
                 val.active = false
             })
             workspaces.value[space-1].active = true
-            currentWorkspace = space
+//            currentWorkspace = space
         }
         console.log("WORKSPACES", workspaces)
     }
@@ -90,5 +91,3 @@ defineExpose({
     <timeContext v-show="showTime" />
     <sysContext  v-show="showSys" />
 </template>
-
-<style src="../styles/topPanel.css"></style>

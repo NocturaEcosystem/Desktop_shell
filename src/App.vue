@@ -8,6 +8,10 @@ import { nyx_client } from "./webClient.ts";
 import { showNotification } from "./components/notify..vue";
 import osd from "./components/osd.vue";
 import { onMounted, onUnmounted, ref } from "vue";
+import "./styles/vars.css"
+import "./styles/main.css"
+import "./styles/notify.css"
+
 
 let keys = new Set<string>()
 
@@ -89,9 +93,6 @@ onUnmounted(() => {
 
 </script>
 
-<style src="./styles/vars.css"></style>
-<style src="./styles/main.css"></style>
-<style src="./styles/notify.css"></style>
 
 <template>
   <topPanel ref="top_ref"/>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import "../../styles/contexts/time.css"
+
 </script>
 
 <template>
@@ -29,5 +31,4 @@
     </div>
 </template>
 
-<style src="../../styles/contexts/time.css"></style>
 

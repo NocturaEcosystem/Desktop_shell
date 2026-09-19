@@ -13,10 +13,10 @@ Because currently this shell is underdeveloped, expect a lot of architectural ch
 
 ## Things that were added/changed
 ```
-src/  -  🟢 Added
-src-tauri/  -  🟢 Added
-logs/  -  🟢 Added
-.gitignore  -  🟡 Changed
+src/       - 🟢 Added
+src-tauri/ - 🟢 Added
+logs/      - 🟢 Added
+.gitignore - 🟡 Changed
 ```
 
 ---
@@ -31,22 +31,23 @@ activatable through nyx-server
 
 ## Notice
 As of now, to send a notifcation you have to send the message:
-```{
+```
+{
     "payload": {
         "request": "notify",
         "title": "Enter name of your app",
         "summary": "Summary of msg",
         "Options": [// empty or options]   NOTE: options not supported yet
     }
-}```
+}
+```
 NOTE: you can also just use the classic linux D-bus **later** when noctura will support it
 
 
 ## Things that were added/changed
 ```
-notify.vue  -  🟡 Changed
-notify.css  -  🟡 Changed
-
+notify.vue - 🟡 Changed
+notify.css - 🟡 Changed
 ```
 ---
 # ⭐ New Feature - V-1-0-2
@@ -65,10 +66,9 @@ There is a minor delay when setting launcher to visible
 
 ## Things that were added/changed
 ```
-topPanel.vue  -  🟡 Changed
-shell.vue  -  🟡 Changed
-launcher.vue  -  🟡 Changed
-
+topPanel.vue - 🟡 Changed
+shell.vue    - 🟡 Changed
+launcher.vue - 🟡 Changed
 ```
 ---
 # ⭐ New Feature - V-1-0-3
@@ -86,10 +86,9 @@ The variable `workspaces` Now stores the workspacees available
 
 ## Things that were added/changed
 ```
-launcher.vue  -  🟡 Changed
-topPanel.vue  -  🟡 Changed
-shell.vue  -  🟡 Changed
-
+launcher.vue - 🟡 Changed
+topPanel.vue - 🟡 Changed
+shell.vue    - 🟡 Changed
 ```
 ---
 # 📁 Architecture change / ⭐ New Feature - V-1-0-4
@@ -107,8 +106,27 @@ The key press system was moved from launcher.vue to App.vue
 
 ## Things that were added/changed
 ```
-osd.vue  -  🟢 Added
-launcher.vue  -  🟡 Changed
-App.vue  -  🟡 Changed
+osd.vue      - 🟢 Added
+launcher.vue - 🟡 Changed
+App.vue      - 🟡 Changed
+```
+---
+# 📁 Architecture change - V-1-1-0
+
+**Time**: 19/09/2026 - 01:46 PM
+**Status**: 🌕 Complete
+
+## Summary
+Refractored code so code can be ccompiled
+
+## Notice
+Essentially, all the:
+`<style src="PATH"></style>`
+has been replaced with:
+`import "PATH"`
+
+## Things that were added/changed
+```
+src/components/  -  🟡 Changed
 
 ```

@@ -2,7 +2,9 @@
 import { onMounted, ref } from "vue";
 import { invoke } from '@tauri-apps/api/core'
 let Launcher = ref<HTMLElement | null>(null)
-const keys = new Set<string>()
+import "../styles/launcher.css"
+import "../styles/contexts/shell.css"
+
 
 interface appsStructure {
   name: string,
@@ -115,5 +117,3 @@ function hideContext() {
     </div>
 </template>
 
-<style src="../styles/launcher.css"></style>
-<style src="../styles/contexts/shell.css"></style>

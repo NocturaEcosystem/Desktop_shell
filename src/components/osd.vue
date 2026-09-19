@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { ref } from 'vue';
+import "../styles/osd.css"
+
 
 const slider = ref<boolean>(false);
 const option = ref<boolean>(false);
@@ -134,5 +136,4 @@ defineExpose({
 
 </template>
 
-<style src="../styles/osd.css"></style>
 

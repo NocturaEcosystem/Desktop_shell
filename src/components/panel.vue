@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import "../styles/panel.css"
+
 
 const panel = ref<any>(null);
 let interval: number;
@@ -41,5 +43,3 @@ onUnmounted(() => {
         </div>
     </div>
 </template>
-
-<style src="../styles/panel.css"></style>

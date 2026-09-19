@@ -1,7 +1,9 @@
-<script setup lang="ts" />
+<script setup lang="ts">
+import "../../styles/contexts/sys.css"
+
+</script>
 
 <template>
     <div class="sys-context"></div>
 </template>
 
-<style src="../../styles/contexts/sys.css"></style>
