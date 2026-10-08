@@ -130,3 +130,26 @@ has been replaced with:
 src/components/  -  🟡 Changed
 
 ```
+---
+# 📁 Architecture change - V-1-1-1
+
+**Time**: 09/10/2026 - 01:22 AM
+**Status**: 🌘 Detected
+
+## Summary
+Restructured frontend into the following 3 parts:
+- OSD (things that will be on top rgardless of state)
+- MiddleGround (things that will be on screen, but fullscreen can change that)
+- BackGround (lowest on the Z-Index)
+
+## Notice
+This is a HUGE architectural change. This is how to activate each layer though:
+```sh
+npx run tauri dev -- -- --(osd/middle/bg)
+```
+
+## Things that were added/changed
+```
+Everything  -  🟡 Changed
+
+```

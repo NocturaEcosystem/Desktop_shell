@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "name": "Noctura Space",
+        "icon": "/tauri.svg",
+        "exec": "echo hi"
+    },
+    {
+        "id": 2,
+        "name": "Other app",
+        "icon": "/vite.svg",
+        "exec": "echo hello"
+    }
+    
+]

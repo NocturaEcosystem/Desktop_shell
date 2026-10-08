@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { ref, onMounted, onUnmounted } from 'vue'
-import "../../styles/contexts/shell.css"
+import "../styles/shell.css"
 
 const ShellContext = ref<HTMLElement | null>(null)
 

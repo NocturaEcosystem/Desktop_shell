@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import panel from "./components/panel.vue"
 import topPanel from "./components/topPanel.vue"
-import shellContext from "./components/contexts/shell.vue"
 import notification from "./components/notify..vue"
 import launcher from "./components/launcher.vue";
 import { nyx_client } from "./webClient.ts";
@@ -94,12 +93,11 @@ onUnmounted(() => {
 </script>
 
 
-<template>
+<template ref="Root">
   <topPanel ref="top_ref"/>
   <panel />
   <notification/>
   <launcher ref="launcher_ref"/>
 
-  <shellContext />
   <osd ref="osd_ref"/>
 </template>
