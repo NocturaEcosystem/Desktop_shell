@@ -1,7 +1,32 @@
 <script setup lang="ts">
 
 import { ref, onMounted, onUnmounted } from 'vue'
+import { open } from '@tauri-apps/plugin-dialog';
+import { mkdir, copyFile } from "@tauri-apps/plugin-fs";
+import { appDataDir, join } from '@tauri-apps/api/path';
+
 import "../styles/shell.css"
+import { readFile, exists } from '@tauri-apps/plugin-fs'
+
+async function updateDOMbg() {
+  const main = await appDataDir()
+  const path = await join(main, 'assets', 'bg.png')
+
+  if (!(await exists(path))) {
+    // resort to default
+    document.body.style.removeProperty("background-image");
+    const superPrimaryContrast = getComputedStyle(document.documentElement).getPropertyValue('--superPrimaryContrast').trim()
+    document.body.style.backgroundColor = superPrimaryContrast
+    return;
+  }
+
+  const bytes = await readFile(path)
+  const url = URL.createObjectURL(
+    new Blob([bytes], { type: "image/png"})
+  )
+  document.body.style.removeProperty("background-color");
+  document.body.style.backgroundImage = `url("${url}")`
+}
 
 const ShellContext = ref<HTMLElement | null>(null)
 
@@ -43,6 +68,39 @@ onUnmounted(() => {
   window.removeEventListener("contextmenu", showContext)
   window.removeEventListener("click", hideContext)
 })
+
+async function selectBg() {
+  try {
+    const file = await open({
+      multiple: false,
+      directory: false,
+      title: "Select a file",
+      filters: [
+        {
+          name: "Images",
+          extensions: ["png"],
+        },
+      ],
+    });
+    if (file) {
+      console.log("Selected file:", file);
+      const assetsDir = await join(await appDataDir(), 'assets')
+      await mkdir(assetsDir, { recursive: true })
+
+      const destination = await join(assetsDir, 'bg.png')
+      await copyFile(file, destination)
+      updateDOMbg()
+    }
+
+  } catch (error) {
+    console.error("Failed to open file dialog:", error);
+  }
+}
+
+defineExpose({
+  updateDOMbg
+})
+
 </script>
 
 <template>
@@ -51,7 +109,7 @@ onUnmounted(() => {
             <img src="/tauri.svg" class="shell-button-ico">
             <div class="shell-button-desc">Open Logs</div>
         </div>
-        <div class="shell-button">
+        <div class="shell-button" @click="selectBg()">
             <img src="/tauri.svg" class="shell-button-ico">
             <div class="shell-button-desc">Change Wallpaper</div>
         </div>

@@ -153,3 +153,24 @@ npx run tauri dev -- -- --(osd/middle/bg)
 Everything  -  🟡 Changed
 
 ```
+---
+# ⭐ New Feature - V-1-1-2
+
+**Time**: 11/10/2026 - 06:02 PM
+**Status**: 🌕 Complete
+
+## Summary
+Added background feature 
+
+## Notice
+Stores the background our apps data directory
+If no background has been preset, we use the strong primary contrast color for
+the background
+
+## Things that were added/changed
+```
+shell.vue (Frontends/Background)  -  🟡 Changed
+app.vue (Frontends/Background)    -  🟡 Changed
+
+
+```

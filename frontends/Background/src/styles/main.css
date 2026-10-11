@@ -9,6 +9,9 @@ html, body {
     height: 100%;
 }
 
+body {
+    background-color: var(--superPrimaryContrast);
+}
 .card {
     display: flex;
     flex-direction: column;
