@@ -11,7 +11,9 @@ import "./styles/vars.css"
 import "./styles/main.css"
 import "./styles/notify.css"
 
-
+document.addEventListener("contextmenu", (e) => {
+  e.preventDefault()
+})
 let keys = new Set<string>()
 
 let launcher_ref = ref<InstanceType<typeof launcher> | null>(null)
@@ -46,13 +48,11 @@ client.OnReceive = (rawData) => {
 }
 
 function keyUp(e: KeyboardEvent) {
-  e.preventDefault()
   keys.delete(e.key)
   console.log([...keys])
 }
 
 function keydown(e: KeyboardEvent) {
-  e.preventDefault()
   keys.add(e.key)
   console.log([...keys])
   shortcuts(keys)

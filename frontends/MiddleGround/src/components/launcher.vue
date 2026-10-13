@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { invoke } from '@tauri-apps/api/core'
 let Launcher = ref<HTMLElement | null>(null)
 import "../styles/launcher.css"
 import "../styles/contexts/shell.css"
-
+import Fuse from "fuse.js";
 
 interface appsStructure {
   name: string,
@@ -12,7 +12,8 @@ interface appsStructure {
   desc: string,
   icon: string
 }
-
+const searchQuery = ref<String>("")
+let defaultApp: Record<string, appsStructure[]>;
 let apps = ref<Record<string, appsStructure[]>>({});
 let showContext = ref<Boolean>(true)
 let context = ref<HTMLElement | null>(null);
@@ -49,6 +50,7 @@ onMounted(async() => {
       }));
     }
   }
+  defaultApp = rawData
   apps.value = rawData
   console.log("APPS", apps.value);
   console.log("UNAPPS", rawData);
@@ -60,9 +62,8 @@ defineExpose({
 })
 
 function showContextForApp(event: MouseEvent) {
-
+  event.preventDefault()
   if (context.value) {
-    console.log("HERE");
     showContext.value = true
     context.value.style.left = `${event.clientX}px`
     context.value.style.top = `${event.clientY}px`
@@ -75,12 +76,36 @@ function hideContext() {
     context.value.classList.remove("show")
   }
 }
+
+
+apps = computed(() => {
+  const query = searchQuery.value.trim().toLowerCase()
+  if (query == "") {
+    return defaultApp
+  }
+  //apps
+  let res: Record<string, appsStructure[]> = {};
+  for (const [catName, catArr] of Object.entries(defaultApp)) {
+    const option = {
+      keys: ['name'],
+      threshold: 0.4
+    }
+    const fuse = new Fuse(catArr, option)
+    const searchResult = fuse.search(query)
+    const filter = searchResult.map((result) => result.item)
+    if (filter.length != 0) {
+      res[catName] = filter
+    }
+  }
+  return res
+})
 </script>
 
 <template>
     <div class="launcher" ref="Launcher" style="display: none;" @click="hideContext">
         <div class="search-bar">
-            <div>Search...</div>
+            <input style='all: unset; margin-left: 12px; width: 100%;' placeholder="Search..."
+                   v-model="searchQuery"></input>
         </div>
 
       <div v-for="(appList, categoryName) in apps" :key="categoryName">

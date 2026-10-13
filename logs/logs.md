@@ -1,6 +1,6 @@
 # Development logs
 > The chronological order of updates for the nocutra component: Lepus---
-# 📚 Documentation - V-1-0-0
+# 📚 Documentation - V-0-0-0
 
 **Time**: 05/09/2026 - 12:58 PM
 **Status**: 🌕 Complete
@@ -20,7 +20,7 @@ logs/      - 🟢 Added
 ```
 
 ---
-# ⭐ New Feature - V-1-0-1
+# ⭐ New Feature - V-0-1-1
 
 **Time**: 06/09/2026 - 07:37 PM
 **Status**: 🌗 Partially Complete
@@ -50,7 +50,7 @@ notify.vue - 🟡 Changed
 notify.css - 🟡 Changed
 ```
 ---
-# ⭐ New Feature - V-1-0-2
+# ⭐ New Feature - V-0-1-2
 
 **Time**: 08/09/2026 - 12:44 AM
 **Status**: 🌗 Partially Complete
@@ -71,7 +71,7 @@ shell.vue    - 🟡 Changed
 launcher.vue - 🟡 Changed
 ```
 ---
-# ⭐ New Feature - V-1-0-3
+# ⭐ New Feature - V-0-1-3
 
 **Time**: 10/09/2026 - 09:57 AM
 **Status**: 🌕 Complete
@@ -91,7 +91,7 @@ topPanel.vue - 🟡 Changed
 shell.vue    - 🟡 Changed
 ```
 ---
-# 📁 Architecture change / ⭐ New Feature - V-1-0-4
+# 📁 Architecture change / ⭐ New Feature - V-0-1-4
 
 **Time**: 12/09/2026 - 03:38 PM
 **Status**: 🌕 Complete
@@ -111,7 +111,7 @@ launcher.vue - 🟡 Changed
 App.vue      - 🟡 Changed
 ```
 ---
-# 📁 Architecture change - V-1-1-0
+# 📁 Architecture change - V-0-1-5
 
 **Time**: 19/09/2026 - 01:46 PM
 **Status**: 🌕 Complete
@@ -131,7 +131,7 @@ src/components/  -  🟡 Changed
 
 ```
 ---
-# 📁 Architecture change - V-1-1-1
+# 📁 Architecture change - V-0-1-6
 
 **Time**: 09/10/2026 - 01:22 AM
 **Status**: 🌘 Detected
@@ -154,7 +154,7 @@ Everything  -  🟡 Changed
 
 ```
 ---
-# ⭐ New Feature - V-1-1-2
+# ⭐ New Feature - V-0-1-7
 
 **Time**: 11/10/2026 - 06:02 PM
 **Status**: 🌕 Complete
@@ -172,5 +172,25 @@ the background
 shell.vue (Frontends/Background)  -  🟡 Changed
 app.vue (Frontends/Background)    -  🟡 Changed
 
+
+```
+---
+# ⭐ New Feature - V-0-1-8
+
+**Time**: 13/10/2026 - 05:26 PM
+**Status**: 🌕 Complete
+
+## Summary
+Added search feature for the launcher menu
+
+## Notice
+To implement the search feature, I used fuse.js
+The default context menu is also removed.
+The system context menu will be moved to another ground (LayerSurface::Bottom)
+
+## Things that were added/changed
+```
+App.vue       -  🟡 Changed
+Launcher.vue  -  🟡 Changed
 
 ```
