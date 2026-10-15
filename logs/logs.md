@@ -194,3 +194,41 @@ App.vue       -  🟡 Changed
 Launcher.vue  -  🟡 Changed
 
 ```
+---
+# ⭐ New Feature / 📁 Architecture change - V-0-1-9
+
+**Time**: 15/10/2026 - 05:37 PM
+**Status**: 🌗 Partially Complete
+
+## Summary
+Added another layer for widgets, and added interconnection between Lepus parts
+by making use of nyx-server. 
+
+## Notice
+A new frontend layer has been made, widgets, its the LayerSurface::Bottom
+Random ports will be selected instead of a predefined one.
+Run before command changed to run scripts/dev.mjs
+To test system context:
+
+    - Open 3 terminals:
+        - on terminal 1, run:
+            ```sh
+                # change directory to nyx-server
+                npx tsx src/server.ts
+            ```
+        - on terminal 2, run:
+            ```sh
+                LEPUS_FRONTEND=Background npm run dev
+            ```
+        - on terminal 3, run:
+            ```sh
+                LEPUS_FRONTEND=Widgets npm run dev
+            ```
+
+## Things that were added/changed
+```
+frontends/Widgets/            -  🟢 Added
+scripts/dev.mjs               -  🟢 Added
+frontends/Background/App.vue  -  🟡 Changed
+
+```

@@ -1,7 +1,8 @@
 {
   "scripts": {
     "tauri": "tauri",
-    "dev": "npm run dev --prefix frontends/${LEPUS_FRONTEND:-OSD}"
+    "dev:frontend": "npm run dev --prefix frontends/${LEPUS_FRONTEND:-OSD}",
+    "dev": "node scripts/dev.mjs"
   },
   "dependencies": {
     "@tauri-apps/plugin-dialog": "^2.8.1",
@@ -11,6 +12,8 @@
   "devDependencies": {
     "@tauri-apps/cli": "^2.12.1",
     "@vitejs/plugin-vue": "^6.0.9",
+    "cross-env": "^10.1.0",
+    "get-port": "^7.2.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.4"
   }

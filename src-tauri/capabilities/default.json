@@ -2,7 +2,13 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for Lepus windows",
-  "windows": ["main", "osd", "middleground", "background"],
+  "windows": [
+    "background",
+    "main",
+    "middleground",
+    "osd",
+    "widgets"
+  ],
   "permissions": [
     "core:default",
     "opener:default",

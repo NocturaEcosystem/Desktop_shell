@@ -7,13 +7,13 @@ import { appDataDir, join } from '@tauri-apps/api/path';
 
 import "../styles/shell.css"
 import { readFile, exists } from '@tauri-apps/plugin-fs'
+import { nyx_client } from '../webClient';
 
 async function updateDOMbg() {
   const main = await appDataDir()
   const path = await join(main, 'assets', 'bg.png')
 
   if (!(await exists(path))) {
-    // resort to default
     document.body.style.removeProperty("background-image");
     const superPrimaryContrast = getComputedStyle(document.documentElement).getPropertyValue('--superPrimaryContrast').trim()
     document.body.style.backgroundColor = superPrimaryContrast
@@ -29,6 +29,8 @@ async function updateDOMbg() {
 }
 
 const ShellContext = ref<HTMLElement | null>(null)
+const nyxclient = new nyx_client("Lepus_widgets");
+nyxclient.connect()
 
 function contextShow(e: MouseEvent) {
 	console.log("many, ShellContext", ShellContext.value)
@@ -69,6 +71,13 @@ onUnmounted(() => {
   window.removeEventListener("click", hideContext)
 })
 
+async function updateBackground(destination: string) {
+  console.log("nyxclient")
+  nyxclient.send("Lepus_background", {
+    "Background": destination
+  })
+}
+
 async function selectBg() {
   try {
     const file = await open({
@@ -89,7 +98,7 @@ async function selectBg() {
 
       const destination = await join(assetsDir, 'bg.png')
       await copyFile(file, destination)
-      updateDOMbg()
+      updateBackground(destination)
     }
 
   } catch (error) {
