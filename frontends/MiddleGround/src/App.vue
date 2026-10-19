@@ -15,10 +15,10 @@ document.addEventListener("contextmenu", (e) => {
   e.preventDefault()
 })
 let keys = new Set<string>()
-
 let launcher_ref = ref<InstanceType<typeof launcher> | null>(null)
 let top_ref = ref<InstanceType<typeof topPanel> | null>(null)
 let osd_ref = ref<InstanceType<typeof osd> | null>(null)
+let panel_ref = ref<InstanceType<typeof panel> | null>(null)
 
 let client = new nyx_client("Lepus")
 client.connect()
@@ -81,6 +81,11 @@ function shortcuts(keys: Set<string>) {
 onMounted(() => {
   window.addEventListener("keydown", keydown)
   window.addEventListener("keyup", keyUp)
+  document.addEventListener("click", () => {
+    if (panel_ref.value) {
+      panel_ref.value.hideContext()
+    }
+  })
 })
 
 onUnmounted(() => {
@@ -95,7 +100,7 @@ onUnmounted(() => {
 
 <template ref="Root">
   <topPanel ref="top_ref"/>
-  <panel />
+  <panel ref="panel_ref"/>
   <notification/>
   <launcher ref="launcher_ref"/>
 

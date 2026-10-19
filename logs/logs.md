@@ -232,3 +232,25 @@ scripts/dev.mjs               -  🟢 Added
 frontends/Background/App.vue  -  🟡 Changed
 
 ```
+---
+# ⭐ New Feature - V-0-1-10
+
+**Time**: 19/10/2026 - 01:17 PM
+**Status**: 🌗 Partially Complete
+
+## Summary
+Added pin and unpin features for apps
+
+## Notice
+panel.json location as be shifted from public directory to
+app base directory (~/.config/...)
+there has been a slight change to the data being stored in panel.json
+they dont have the "id" key anymore.
+
+## Things that were added/changed
+```
+launcher.vue  -  🟡 Changed
+panel.vue     -  🟡 Changed
+app.vue       -  🟡 Changed
+
+```

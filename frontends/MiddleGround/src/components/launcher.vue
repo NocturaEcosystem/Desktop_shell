@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { invoke } from '@tauri-apps/api/core'
+import { writeTextFile, readTextFile, BaseDirectory } from "@tauri-apps/plugin-fs";
 let Launcher = ref<HTMLElement | null>(null)
 import "../styles/launcher.css"
 import "../styles/contexts/shell.css"
@@ -17,6 +18,15 @@ let defaultApp: Record<string, appsStructure[]>;
 let apps = ref<Record<string, appsStructure[]>>({});
 let showContext = ref<Boolean>(true)
 let context = ref<HTMLElement | null>(null);
+const PANELNAME = "panel.json"
+
+const options = { baseDir: BaseDirectory.AppConfig };
+let global_app: appsStructure = {
+  name: "",
+  icon: "",
+  exec: "",
+  desc: ""
+}
 
 function showLauncher() {
   if (Launcher?.value instanceof HTMLElement) {
@@ -41,7 +51,7 @@ function showLauncher() {
 
 
 onMounted(async() => {
-  const rawData: Record<string, appsStructure[]> = await invoke('get_apps');
+  let rawData: Record<string, appsStructure[]> = await invoke('get_apps');
   for (const category in rawData) {
     if (Array.isArray(rawData[category])) {
       rawData[category] = rawData[category].map(app => ({
@@ -50,6 +60,11 @@ onMounted(async() => {
       }));
     }
   }
+  rawData = Object.fromEntries(
+    Object.entries(rawData).sort(([a], [b]) =>
+      a.localeCompare(b)
+    )
+  );
   defaultApp = rawData
   apps.value = rawData
   console.log("APPS", apps.value);
@@ -61,13 +76,14 @@ defineExpose({
   showLauncher
 })
 
-function showContextForApp(event: MouseEvent) {
+function showContextForApp(event: MouseEvent, app_child: appsStructure) {
   event.preventDefault()
   if (context.value) {
     showContext.value = true
     context.value.style.left = `${event.clientX}px`
     context.value.style.top = `${event.clientY}px`
     context.value.classList.add("show")
+    global_app = app_child
   }
 }
 
@@ -77,13 +93,22 @@ function hideContext() {
   }
 }
 
+async function pin() {
+  let configText = await readTextFile(PANELNAME, options);
+  configText = JSON.parse(configText);
+  if (Array.isArray(configText)) {
+    configText.push(global_app)
+    await writeTextFile(PANELNAME, JSON.stringify(configText, null, 2), options)
+  }
+  hideContext()
+}
+
 
 apps = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
   if (query == "") {
     return defaultApp
   }
-  //apps
   let res: Record<string, appsStructure[]> = {};
   for (const [catName, catArr] of Object.entries(defaultApp)) {
     const option = {
@@ -118,9 +143,9 @@ apps = computed(() => {
                 class="app-wrap"
                 :data-name="app_child.name"
                 :data-exec="app_child.exec"
-                
+                @contextmenu="showContextForApp($event, app_child)"
             >
-              <img :src="app_child.icon" class="appPadIco app-ico" @contextmenu="showContextForApp($event)"/>
+              <img :src="app_child.icon" class="appPadIco app-ico"/>
             </div>
           </div>
         </template>
@@ -129,7 +154,7 @@ apps = computed(() => {
 
     <div class="shell-context" ref="context">
 
-      <div class="shell-button">
+      <div class="shell-button" @click="pin()">
         <img src="/tauri.svg" class="shell-button-ico">
         <div class="shell-button-desc">Pin app</div>
       </div>
