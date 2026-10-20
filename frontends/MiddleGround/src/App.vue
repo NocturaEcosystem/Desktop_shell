@@ -4,7 +4,6 @@ import topPanel from "./components/topPanel.vue"
 import notification from "./components/notify..vue"
 import launcher from "./components/launcher.vue";
 import { nyx_client } from "./webClient.ts";
-import { showNotification } from "./components/notify..vue";
 import osd from "./components/osd.vue";
 import { onMounted, onUnmounted, ref } from "vue";
 import "./styles/vars.css"
@@ -19,8 +18,9 @@ let launcher_ref = ref<InstanceType<typeof launcher> | null>(null)
 let top_ref = ref<InstanceType<typeof topPanel> | null>(null)
 let osd_ref = ref<InstanceType<typeof osd> | null>(null)
 let panel_ref = ref<InstanceType<typeof panel> | null>(null)
+let notify_ref = ref<InstanceType<typeof notification> | null>(null)
 
-let client = new nyx_client("Lepus")
+let client = new nyx_client("Lepus_main")
 client.connect()
 client.OnReceive = (rawData) => {
   if (typeof rawData == "string") {
@@ -30,11 +30,22 @@ client.OnReceive = (rawData) => {
         switch (data.payload.request) {
           case "notify": {
             let request = data.payload
-            if (Object.prototype.hasOwnProperty.call(request, "title") && Object.prototype.hasOwnProperty.call(request, "subject") && Object.prototype.hasOwnProperty.call(request, "options")) {
+            if (Object.prototype.hasOwnProperty.call(request, "title") && Object.prototype.hasOwnProperty.call(request, "appName") && Object.prototype.hasOwnProperty.call(request, "subject")) {
               try {
-                showNotification(request.title, request.subject, request.options)
+                if (notify_ref.value) {
+                  if (Object.prototype.hasOwnProperty.call(request, "options")) {
+                    notify_ref.value.showNotification(request.appName, request.title, request.subject, request.options)
+                  }
+                  else {
+                    notify_ref.value.showNotification(request.appName, request.title, request.subject)
+                  }
+                } else {
+                  console.log("notify_ref DOSENT EXIST")
+                }
+
               }
               catch (e) {
+                
                 console.log("ERROR AT {NOTIFY}: ", e)
               }
             }
@@ -101,7 +112,7 @@ onUnmounted(() => {
 <template ref="Root">
   <topPanel ref="top_ref"/>
   <panel ref="panel_ref"/>
-  <notification/>
+  <notification ref="notify_ref"/>
   <launcher ref="launcher_ref"/>
 
   <osd ref="osd_ref"/>

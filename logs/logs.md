@@ -254,3 +254,34 @@ panel.vue     -  🟡 Changed
 app.vue       -  🟡 Changed
 
 ```
+---
+# ⭐ New Feature / 📁 Architecture change - V-0-1-11
+
+**Time**: 20/10/2026 - 10:20 PM
+**Status**: 🌕 Complete
+
+## Summary
+Apps can now display their name when sending notifications
+
+## Notice
+**⚠️⚠️⚠️ PLEASE NOTICE THESE SIGNIFICANT CHANGES:**
+**NYX_NAME OF WIDGET LAYER HAS BEEN CHANGED TO**: Lepus_widget
+**NYX_NAME OF MIDDLEGROUND LAYER HAS BEEN CHANGED TO**: Lepus_main
+**WHEN SENDING NOTIFCATION, THE NEW STRUCUTRE FOR THE PAYLOAD IS**: 
+```
+{
+    "appName": "NAMEOFAPP",
+    "request": "notify",
+    "title": "TITLE",
+    "subject": "SUBJECT",
+    "options": ["Yes", "No"]  // YOU CAN ALSO NOT INCLUDE THIS
+}
+```
+
+## Things that were added/changed
+```
+App.vue     -  🟡 Changed
+notify.vue  -  🟡 Changed
+shell.vue   -  🟡 Changed
+
+```

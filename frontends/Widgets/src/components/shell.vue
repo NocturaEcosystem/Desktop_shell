@@ -29,7 +29,7 @@ async function updateDOMbg() {
 }
 
 const ShellContext = ref<HTMLElement | null>(null)
-const nyxclient = new nyx_client("Lepus_widgets");
+const nyxclient = new nyx_client("Lepus_widget");
 nyxclient.connect()
 
 function contextShow(e: MouseEvent) {

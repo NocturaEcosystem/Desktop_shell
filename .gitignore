@@ -50,3 +50,6 @@ coverage/
 .nyx/
 logs/*
 !logs/logs.md
+
+# Plans
+icons

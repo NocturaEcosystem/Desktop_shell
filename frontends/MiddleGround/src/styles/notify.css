@@ -4,28 +4,53 @@
     border-radius: var(--radi);
     background-color: var(--secondaryColor);
     transition: all var(--reactTime) ease;
+    min-height: 12vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: "Manrope", sans-serif;
+}
+
+.notification > * {
+    transform: translateX(20px);
+}
+
+
+.notification-app-details {
+    margin-top: 15px;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    transform: translateX(18px);
+}
+
+.classy-icon {
+    outline-color: red;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--superPrimaryContrast);
 }
 
 .notification-title {
     font-size: calc(var(--fntsize) + 5px);
     font-weight: 500;
+    transform: translateX(30px);
 }
 
-.notification > * {
-    margin-left: 10px;
-    margin-top: 10px;
+.notification-subject {
+    margin-left: 30px;
 }
+
 
 .notification-main > *{
     margin-top: 10px;
-    margin-left: 13px;
     gap: 10px;
 }
 
 .notification-options {
     display: flex;
-    margin: unset;
-    margin-top: 10px;
+    transform: translateX(-20px); /* reverse the effect of notification > * */
     justify-content: space-evenly;
     overflow-x: auto;
     height: fit-content;
